@@ -18,10 +18,10 @@ namespace OxyPlotTest
         {
             double  h, x, f = 0.0;
             int a = 1, b = 1000;
-            h = n / 10000;
+            h = (b - a) / n;
 
            for (x = a; x < (b - h); x += h)
-                f += (func(x) + func(x + h)) / h;
+                f += ((func(x) + func(x + h)) / 2.0) * h;
 
         }
     }

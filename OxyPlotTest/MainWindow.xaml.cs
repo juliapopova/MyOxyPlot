@@ -30,26 +30,33 @@ namespace OxyPlotTest
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Stopwatch st = new Stopwatch();
-            integral integ = new integral();
-            double n = 1000;
-
-            for (int i = 0; i < 1; i++)
-            {
-                st.Start();
-                integ.calculate(n);
-                st.Stop();
-                double time = (double)st.Elapsed.Seconds;
-                n += 500;
-                (graph1.Model.Series[0] as FunctionSeries).Points.Add(new DataPoint(time, n));
-            }
+            Calc();
 
             //(graph1.Model.Series[0] as FunctionSeries).Points.Clear();
             //(graph1.Model.Series[0] as FunctionSeries).Points.Add(new DataPoint(10, 10));
             //(graph1.Model.Series[0] as FunctionSeries).Points.Add(new DataPoint(20, 20));
             //graph1.InvalidatePlot();
 
-           //(graph1.Model.Series[1] as BarSeries).Items.Add(new BarItem(3));
+            //(graph1.Model.Series[1] as BarSeries).Items.Add(new BarItem(3));
+        }
+
+        public void Calc ()
+        {
+//            (graph1.Model.Series[0] as LineSeries).Points.Clear();
+            Stopwatch st = new Stopwatch();
+            integral integ = new integral();
+            double n = 1000;
+
+            for (int i = 0; i < 7; i++)
+            {
+                st.Start();
+                integ.calculate(n);
+                st.Stop();
+                double time = (double)st.Elapsed.Seconds;
+                n += 300;
+//                (graph1.Model.Series[0] as LineSeries).Points.Add(new DataPoint(time, n));
+            }
+ //           graph1.InvalidatePlot();
         }
     }
 }
