@@ -12,6 +12,6 @@
     </Window.DataContext>
     
     <Grid>
-        <oxy:PlotView Model="{Binding MyModel}" Grid.Row="0" x:Name="graph1"/>
+        <oxy:PlotView Model="{Binding MyModel1}" Grid.Row="0" x:Name="graph1"/>
     </Grid>
 </Window>

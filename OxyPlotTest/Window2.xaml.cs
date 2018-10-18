@@ -25,22 +25,24 @@ namespace OxyPlotTest
         public Window2()
         {
             InitializeComponent();
+
         }
 
         public void culc()
         {
             (graph2.Model.Series[0] as LineSeries).Points.Clear();
+            
             Stopwatch timer = new Stopwatch();
-            double n = 100000;
-            int kol = 7;
-            Random rnd = new Random();
+            double n = 1000;
+            int kol = 10;
+           
             integral integ = new integral();
             for (int k = 0; k < kol; k++)
             {
                 timer.Start();
                 integ.calculateParallel(n);
                 timer.Stop();
-                (graph2.Model.Series[0] as LineSeries).Points.Add(new DataPoint(timer.ElapsedMilliseconds, n / 100000));
+                (graph2.Model.Series[0] as LineSeries).Points.Add(new DataPoint(timer.ElapsedMilliseconds, n));
                 timer.Reset();
 
                 n *= 2;

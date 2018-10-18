@@ -13,13 +13,6 @@ namespace OxyPlotTest
             return 2 * x - Math.Log(7 * x) - 12;
         }
 
-        //public double integ (double x, double f, double h)
-        //{
-        //    f += ((func(x) + func(x + h)) / 2.0) * h;
-        //    x += h;
-        //    return f;
-        //}
-
         public double calculatePosl(double n)
         {
             double h, x, f = 0.0;
