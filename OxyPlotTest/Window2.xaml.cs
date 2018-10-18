@@ -18,19 +18,18 @@ using System.Windows.Shapes;
 namespace OxyPlotTest
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for Window2.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class Window2 : Window
     {
-        public Window1()
+        public Window2()
         {
             InitializeComponent();
-
         }
 
         public void culc()
         {
-            (graph1.Model.Series[0] as LineSeries).Points.Clear();
+            (graph2.Model.Series[0] as LineSeries).Points.Clear();
             Stopwatch timer = new Stopwatch();
             double n = 100000;
             int kol = 7;
@@ -39,14 +38,14 @@ namespace OxyPlotTest
             for (int k = 0; k < kol; k++)
             {
                 timer.Start();
-                integ.calculatePosl(n);
+                integ.calculateParallel(n);
                 timer.Stop();
-                (graph1.Model.Series[0] as LineSeries).Points.Add(new DataPoint(timer.ElapsedMilliseconds, n / 100000));
+                (graph2.Model.Series[0] as LineSeries).Points.Add(new DataPoint(timer.ElapsedMilliseconds, n / 100000));
                 timer.Reset();
-                
+
                 n *= 2;
             }
-            graph1.InvalidatePlot();
+            graph2.InvalidatePlot();
         }
     }
 }

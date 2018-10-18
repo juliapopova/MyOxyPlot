@@ -67,8 +67,8 @@ namespace OxyPlotTest
         }
 
         Window1 posl = new Window1();
-//        Paral_graph paral = new Paral_graph();
- //       Bars bar = new Bars();
+        Window2 parallel = new Window2();
+        //       Bars bar = new Bars();
 
         private void PoslGraph_Click(object sender, RoutedEventArgs e)
         {
@@ -78,7 +78,8 @@ namespace OxyPlotTest
 
         private void ParalGraph_Click(object sender, RoutedEventArgs e)
         {
-
+            parallel.culc();
+            parallel.Show();
         }
 
         private void barGraph_Click(object sender, RoutedEventArgs e)
