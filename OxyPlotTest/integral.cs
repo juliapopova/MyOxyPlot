@@ -27,36 +27,28 @@ namespace OxyPlotTest
             h = (b - a) / n;
             x = a;
 
-            for (int i = 0; i < n-1; i++)
-            {
-                f += ((func(x) + func(x + h)) / 2.0) * h;
-                x += h;
-            }
+            for (int i = 0; i < n - 1; i++)
+                f += ((func(a + h * i) + func(a + h * (i + 1))) / 2.0);
                
-            return f;
+            return f * h;
         }
 
         public double calculateParallel(double n)
         {
-            double h, x, f = 0.0;
+            double h;
             int a = 1, b = 1000;
             h = (b - a) / n;
 
-            x = a;
+            double rez = 0.0;
 
-            for (int i = 0; i < n - 1; i++)
+            object obj = new object();
+
+            Parallel.For(0, Convert.ToInt32(n-1), () => 0.0, (i, s, tmp) =>
             {
-                f += ((func(x) + func(x + h)) / 2.0) * h;
-                x += h;
-            }
-
-            //Parallel.For(0, Convert.ToInt32(n - 1), =>
-            //{
-            //    f += ((func(x) + func(x + h)) / 2.0) * h;
-            //    x += h;
-            //});              
-
-            return f;
+                tmp += (func(a + h * i) + func(a + h * (i + 1))) / 2.0;
+                return tmp;
+            }, tmp => { lock (obj) rez += tmp; });
+            return rez * h;
         }
     }
 }
