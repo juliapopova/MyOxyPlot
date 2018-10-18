@@ -1,5 +1,8 @@
-﻿using System;
+﻿using OxyPlot;
+using OxyPlot.Series;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +25,30 @@ namespace OxyPlotTest
         public Window1()
         {
             InitializeComponent();
+
+        }
+
+        public void culc()
+        {
+           // (graph1.Model.Series[0] as LineSeries).Points.Clear();
+            Stopwatch timer = new Stopwatch();
+            double n = 100000;
+            int kol = 7;
+            Random rnd = new Random();
+            integral integ = new integral();
+            for (int k = 0; k < kol; k++)
+            {
+
+
+                timer.Start();
+                integ.calculatePosl(n);
+                timer.Stop();
+                (graph1.Model.Series[0] as LineSeries).Points.Add(new DataPoint(timer.ElapsedMilliseconds, n / 100000));
+                timer.Reset();
+                
+                n *= 2;
+            }
+            graph1.InvalidatePlot();
         }
     }
 }

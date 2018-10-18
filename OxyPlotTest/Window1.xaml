@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:OxyPlotTest"
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
-        Title="Window1" Height="300" Width="300">
+        Title="График" Height="300" Width="300">
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+    
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="30"/>
-        </Grid.RowDefinitions>
-        <oxy:PlotView Model="{Binding MyModel}" Grid.Row="0" x:Name ="graph1"/>
+        <oxy:PlotView Model="{Binding MyModel1}" Grid.Row="0" x:Name ="graph1"/>
     </Grid>
 </Window>
