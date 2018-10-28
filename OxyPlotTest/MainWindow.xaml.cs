@@ -1,20 +1,7 @@
-﻿using OxyPlot;
-using OxyPlot.Series;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Diagnostics;
+
 
 namespace OxyPlotTest
 {
@@ -30,28 +17,28 @@ namespace OxyPlotTest
 
         public void Calc()
         {
-
-            //            (graph1.Model.Series[0] as LineSeries).Points.Clear();
             Stopwatch st = new Stopwatch();
             integral integ = new integral();
             int n = Convert.ToInt32(this.nText.Text);
+            double a = 0, b = 1000000;
             double rez = 0;
+
+            Func<double, double> func = x => 2 * x - Math.Log(7 * x) - 12;
 
             if (sposob.SelectedIndex == 0)
             {
                 st.Start();
-                rez = integ.calculatePosl(n);
+                rez = integ.calculatePosl(n, a, b, func);
                 st.Stop();
             }
             else
             {
                 st.Start();
-                rez = integ.calculateParallel(n);
+                rez = integ.calculateParallel(n,a,b, func);
                 st.Stop();
             }
 
             double time = (double)st.ElapsedMilliseconds;
-            //                (graph1.Model.Series[0] as LineSeries).Points.Add(new DataPoint(time, n));
 
             this.resultText.Text = Convert.ToString(rez);
             this.timeText.Text = Convert.ToString(time) + " mс";

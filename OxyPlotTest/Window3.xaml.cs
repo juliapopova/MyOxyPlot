@@ -32,19 +32,22 @@ namespace OxyPlotTest
         {
             Stopwatch timerPosl = new Stopwatch();
             Stopwatch timerParall = new Stopwatch();
-            double n = 10000;
+            double a = 0, b = 1000;
             int kol = 7;
+            int n = 1000;
+
+            Func<double, double> f = x => 2 * x - Math.Log(7 * x) - 12;
 
             integral integ = new integral();
             (graph3.Model.Series[0] as BarSeries).Items.Clear();
             for (int k = 0; k < kol; k++)
             {
                 timerPosl.Start();
-                integ.calculatePosl(n);
+                integ.calculatePosl(n,a,b,f);
                 timerPosl.Stop();
 
                 timerParall.Start();
-                integ.calculateParallel(n);
+                integ.calculateParallel(n,a,b,f);
                 timerParall.Stop();
                 
                 (graph3.Model.Series[0] as BarSeries).Items.Add(new BarItem(timerPosl.ElapsedMilliseconds));

@@ -32,14 +32,17 @@ namespace OxyPlotTest
         {
             (graph1.Model.Series[0] as LineSeries).Points.Clear();
             Stopwatch timer = new Stopwatch();
-            double n = 1000;
+            int n = 1000;
+            double a = 0, b = 1000;
             int kol = 10;
-            
+
+            Func<double, double> f = x => 2 * x - Math.Log(7 * x) - 12;
+
             integral integ = new integral();
             for (int k = 0; k < kol; k++)
             {
                 timer.Start();
-                integ.calculatePosl(n);
+                integ.calculatePosl(n, a, b, f);
                 timer.Stop();
                 (graph1.Model.Series[0] as LineSeries).Points.Add(new DataPoint(timer.ElapsedMilliseconds, n));
                 timer.Reset();

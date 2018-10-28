@@ -8,15 +8,15 @@ namespace OxyPlotTest
 {
     class integral
     {
-        public double func(double x)
-        {
-            return 2 * x - Math.Log(7 * x) - 12;
-        }
+        //public double func(double x)
+        //{
+        //    return 2 * x - Math.Log(7 * x) - 12;
+        //}
 
-        public double calculatePosl(double n)
+        public double calculatePosl(int n, double a, double b, Func<double, double>func)
         {
             double h, x, f = 0.0;
-            int a = 1, b = 1000;
+            //int a = 1, b = 1000;
             h = (b - a) / n;
             x = a;
 
@@ -26,10 +26,10 @@ namespace OxyPlotTest
             return f * h;
         }
 
-        public double calculateParallel(double n)
+        public double calculateParallel(int n, double a, double b, Func<double, double>func)
         {
             double h;
-            int a = 1, b = 1000;
+            //int a = 1, b = 1000;
             h = (b - a) / n;
 
             double rez = 0.0;
