@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OxyPlotTest
 {
-    class integral
+    public class integral
     {
         //public double func(double x)
         //{
@@ -15,21 +15,26 @@ namespace OxyPlotTest
 
         public double calculatePosl(int n, double a, double b, Func<double, double>func)
         {
+            if (a > b)
+                throw new ArgumentException("a > b");
+
             double h, x, f = 0.0;
-            //int a = 1, b = 1000;
             h = (b - a) / n;
             x = a;
 
-            for (int i = 0; i < n - 1; i++)
-                f += ((func(a + h * i) + func(a + h * (i + 1))) / 2.0);
+            for (int i = 1; i < n - 1; i++)
+                f += func(a + h * i);
+            f += (func(a) + func(b)) / 2;
                
             return f * h;
         }
 
         public double calculateParallel(int n, double a, double b, Func<double, double>func)
         {
+            if (a > b)
+                throw new Exception("a > b");
+
             double h;
-            //int a = 1, b = 1000;
             h = (b - a) / n;
 
             double rez = 0.0;
@@ -38,9 +43,11 @@ namespace OxyPlotTest
 
             Parallel.For(0, Convert.ToInt32(n-1), () => 0.0, (i, s, tmp) =>
             {
-                tmp += (func(a + h * i) + func(a + h * (i + 1))) / 2.0;
+                tmp += func(a + h * i);
                 return tmp;
             }, tmp => { lock (obj) rez += tmp; });
+
+            rez += (func(a) + func(b)) / 2;
             return rez * h;
         }
     }

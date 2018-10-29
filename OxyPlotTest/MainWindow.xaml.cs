@@ -20,7 +20,7 @@ namespace OxyPlotTest
             Stopwatch st = new Stopwatch();
             integral integ = new integral();
             int n = Convert.ToInt32(this.nText.Text);
-            double a = 0, b = 1000000;
+            double a = 0, b = 1000;
             double rez = 0;
 
             Func<double, double> func = x => 2 * x - Math.Log(7 * x) - 12;
