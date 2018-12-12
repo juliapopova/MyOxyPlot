@@ -27,7 +27,7 @@ namespace OxyPlotTest
         {
             InitializeComponent();
         }
-
+        //функция которая что-то счиает
         public void Calc()
         {
 
